@@ -1,0 +1,2 @@
+# Advertising project with R
+ 
