@@ -1,0 +1,527 @@
+---
+title: "Project_Week_12"
+author: "Karen Mwaura"
+date: "1/22/2022"
+output: html_document
+---
+```{r}
+##**Define the Question**
+
+###Ability to identify which individuals are most likely to click on the cryptography course ads.
+```
+
+```{r}
+##**Metric of success**
+
+###This project will be successful once we are able to identify the people who are most likely to click on the cryptography course ads.
+```
+
+```{r}
+##**Context**
+
+###Attaining marketing strategies goes a long way to boost a product; increasing subscriptions and sales to these products. You are also able to know your kind of audience. In this case, a Kenyan entrepreneur has created an online cryptography course and would want to advertise it on her blog. She currently targets audiences originating from various countries. The question at hand is, how will she know her audience?
+
+```
+
+```{r}
+##**Experimental Design**
+###*Load the dataset.
+###*Preview dataset.
+###*Check for missing values, duplicates and handle outliers.
+###*Perform EDA
+ ###+Univariate Analysis
+ ###+Bivariate Analysis.
+###*Conclusions and Recommendations.
+
+```
+
+
+```{r}
+
+#install.packages("readxl")
+#library("readxl")
+#library(readxl)
+#advertising <- read_excel("")
+#View(advertising)
+
+library(readxl)
+advertising <- read_excel("C:/Users/user/Downloads/advertising.xlsx")
+View(advertising)
+
+
+```
+#Getting the number of rows and columns
+```{r}
+
+dim(advertising)
+
+```
+#Checking for the datatypes
+```{r}
+
+str(advertising)
+
+```
+#Checking for the missing values
+```{r}
+
+
+colSums(is.na(advertising))
+
+```
+#Check for duplicates
+```{r}
+
+duplicated_rows <- advertising[duplicated(advertising),]
+
+duplicated_rows
+```
+#Renaming columns
+```{r}
+# Rename column 
+names(advertising)[names(advertising) == "Daily Time Spent on Site"] <- "Daily_spent_site"
+names(advertising)[names(advertising) == "Daily Internet Usage"] <- "Daily_internet_use"
+names(advertising)[names(advertising) == "Clicked on Ad"] <- "Clicked_ad"
+names(advertising)[names(advertising) == "Area Income"] <- "Area_income"
+advertising
+```
+```{r}
+colnames(advertising)
+```
+
+
+
+#Plotting Age boxplot
+```{r}
+boxplot(advertising$'Age')
+```
+
+#Plotting for area income
+```{r}
+boxplot(advertising$'Area_income')
+
+```
+
+#Plotting for daily internet usage
+```{r}
+boxplot(advertising$`Daily_internet_use`)
+
+```
+```{r}
+boxplot(advertising$Daily_spent_site)
+```
+
+#Univariate analysis
+```{r}
+
+#Central Tendency for Age
+advertising.Age.mean <- mean(advertising$Age)
+
+#Print
+advertising.Age.mean
+```
+```{r}
+advertising.Age.median <- median(advertising$Age)
+
+advertising.Age.median
+
+```
+```{r}
+getmode <- function(v) {
+   uniqv <- unique(v)
+   uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+advertising.Age.mode <- getmode(advertising$Age)
+
+advertising.Age.mode 
+
+```
+```{r}
+advertising.Age.min <- min(advertising$Age)
+advertising.Age.min
+```
+```{r}
+advertising.Age.max <- max(advertising$Age)
+advertising.Age.max
+
+```
+```{r}
+advertising.Age.range <- range(advertising$Age)
+advertising.Age.range
+```
+```{r}
+advertising.Age.quantile <- quantile(advertising$Age)
+advertising.Age.quantile
+
+```
+```{r}
+advertising.Age.variance <- var(advertising$Age)
+advertising.Age.variance
+
+```
+```{r}
+advertising.Age.sd <- sd(advertising$Age)
+advertising.Age.sd 
+
+```
+```{r}
+advertising.Clicked_ad.sd <- sd(advertising$Clicked_ad)
+advertising.Clicked_ad.sd 
+```
+
+```{r}
+advertising.Clicked_ad.mean <- sd(advertising$Clicked_ad)
+advertising.Clicked_ad.mean 
+```
+
+```{r}
+#Central Tendency for area income
+advertising.Area_income.mean <- mean(advertising$Area_income)
+advertising.Area_income.mean
+```
+
+```{r}
+advertising.Area_income.median <- median(advertising$Area_income)
+advertising.Area_income.median
+```
+
+```{r}
+getmode <- function(v) {
+   uniqv <- unique(v)
+   uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+advertising.Area_income.mode <- getmode(advertising$Area_income)
+
+advertising.Area_income.mode 
+```
+```{r}
+advertising.Area_income.variance <- var(advertising$Area_income)
+advertising.Area_income.variance
+
+```
+```{r}
+
+advertising.Area_income.min <- min(advertising$Area_income)
+advertising.Area_income.min
+```
+```{r}
+advertising.Area_income.max <- max(advertising$Area_income)
+advertising.Area_income.max
+
+```
+```{r}
+advertising.Area_income.range <- range(advertising$Area_income)
+advertising.Area_income.range
+```
+```{r}
+
+advertising.Area_income.sd <- sd(advertising$Area_income)
+advertising.Area_income.sd
+```
+```{r}
+advertising.Area_income.quantile <- quantile(advertising$Area_income)
+advertising.Area_income.quantile
+```
+```{r}
+
+#Central Tendency for Daily Internet Usage
+#mean
+advertising.Daily_internet_use.mean <- mean(advertising$Daily_internet_use)
+advertising.Daily_internet_use.mean
+
+```
+
+```{r}
+#get median
+advertising.Daily_internet_use.median <- median(advertising$Daily_internet_use)
+advertising.Daily_internet_use.median
+
+```
+
+```{r}
+#Get mode
+getmode <- function(v) {
+   uniqv <- unique(v)
+   uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+advertising.Daily_internet_use.mode <- getmode(advertising$Daily_internet_use)
+
+advertising.Daily_internet_use.mode 
+
+```
+```{r}
+#quantile
+advertising.Daily_internet_use.quantile <- quantile(advertising$Daily_internet_use)
+advertising.Daily_internet_use.quantile
+```
+
+```{r}
+#Get min
+advertising.Daily_internet_use.min <- min(advertising$Daily_internet_use)
+advertising.Daily_internet_use.min
+```
+
+```{r}
+#Get max
+advertising.Daily_internet_use.max <- max(advertising$Daily_internet_use)
+advertising.Daily_internet_use.max
+```
+
+```{r}
+#Get range
+advertising.Daily_internet_use.range <- range(advertising$Daily_internet_use)
+advertising.Daily_internet_use.range
+```
+```{r}
+#Central Tendency for Daily Time Spent on site
+advertising.Daily_spent_site.mean <- mean(advertising$Daily_spent_site)
+advertising.Daily_spent_site.mean
+
+```
+
+```{r}
+#Get median
+advertising.Daily_spent_site.median <- median(advertising$Daily_spent_site)
+advertising.Daily_spent_site.median
+```
+
+```{r}
+#Get mode
+getmode <- function(v) {
+   uniqv <- unique(v)
+   uniqv[which.max(tabulate(match(v, uniqv)))]
+}
+advertising.Daily_spent_site.mode <- getmode(advertising$Daily_spent_site)
+
+advertising.Daily_spent_site.mode
+```
+
+```{r}
+#Get quantile
+advertising.Daily_spent_site.quantile <- quantile(advertising$Daily_spent_site)
+advertising.Daily_spent_site.quantile
+```
+
+```{r}
+#Get min
+advertising.Daily_spent_site.min <- min(advertising$Daily_spent_site)
+advertising.Daily_spent_site.min
+```
+
+```{r}
+#Get max
+advertising.Daily_spent_site.max <- max(advertising$Daily_spent_site)
+advertising.Daily_spent_site.max
+```
+```{r}
+#Reading column names
+colnames(advertising)
+```
+
+#Graphical illustration on univariate
+```{r}
+#Plot for age 
+hist(advertising$Age, col = "purple", border = "black", density=30)
+
+```
+```{r}
+
+# Create the histogram.
+hist(advertising$Clicked_ad,xlab = "Clicked_ad",col = "purple",border = "black",density=30)
+```
+```{r}
+
+#Barplot on age
+Age <- advertising$Age
+
+frequency <- table(Age)
+
+frequency
+
+barplot(frequency)
+
+```
+
+```{r}
+#Barplot on age
+Male <- advertising$Male
+
+frequency <- table(Male)
+
+frequency
+
+barplot(frequency)
+
+```
+
+```{r}
+colnames(advertising)
+```
+
+
+#Bivariate analysis
+```{r}
+#Get the covariance
+
+Age <- advertising$Age
+
+Clicked_ad <- advertising$Clicked_ad
+
+cov(Age, Clicked_ad)
+
+
+#**The covariance of Age and Clicked Ad is at 2.1. This does not show similar behavior in the variables meaning covariance has a negative linear relationship as the value is close to 0.
+```
+
+```{r}
+#Get correlation coefficient of the same variables
+
+Age <- advertising$Age
+
+Clicked_ad <- advertising$Clicked_ad
+
+cor(Age, Clicked_ad)
+
+#**The correlation coefficient is at 0.492. This shows that there's a weak linear relationship with the variables.
+
+```
+
+```{r}
+Age <- advertising$Age
+
+Clicked_ad <- advertising$Clicked_ad
+
+plot(Age, Clicked_ad, xlab="Age Group", ylab="Clicked on Ad", main ="Age_group vs clicked_on_ad")
+
+#**The graph shows the weak elationship between age and the clicked ads
+
+```
+
+```{r}
+#Get the covariance
+
+Area_income<- advertising$Area_income
+
+Clicked_ad <- advertising$Clicked_ad
+
+cov(Area_income, Clicked_ad)
+
+#*The covariance is -3195.9. There is no similar behavior in the variables.
+
+```
+
+```{r}
+#Find Correlation
+cor(Area_income, Clicked_ad)
+
+#*The correlation coefficient lies on -0.4. This shows there's a negative linear relationship between the variables.
+
+
+```
+
+```{r}
+
+plot(Area_income, Clicked_ad, xlab="Area income", ylab="Clicked on Ad", main ="Area_income vs Clicked_on_ad")
+
+#* The plot shows negative linear relationship.
+
+```
+
+```{r}
+
+#Check for covariance
+
+Daily_spent_site<- advertising$Daily_spent_site
+
+Clicked_ad <- advertising$Clicked_ad
+
+cov(Daily_spent_site, Clicked_ad)
+
+#*The covariance is -5.93. This shows no relationship between the variables.
+```
+
+```{r}
+#Determine the correaltion
+
+cor(Daily_spent_site, Clicked_ad)
+
+#*Correlation is -0.74. This indicates the variables are negatively linearly related and the scatter plot almost falls along a straight line with negative slope.
+#*
+
+```
+
+```{r}
+#Plot fot Daily time spent on site and clicked ad
+
+plot(Daily_spent_site, Clicked_ad, xlab="Time spent on site", ylab="Clicked on Ad", main= "Duration_on_site vs Clicked_on_ad")
+
+#*
+
+```
+
+```{r}
+# Get the input values.
+input <- advertising[,c('Daily_internet_use','Area_income')]
+
+
+plot(x = advertising$Daily_internet_use, y = advertising$Area_income,
+   xlab = "Daily internet usage",
+   ylab = "Area_income",
+   main = "Daily internet usage vs Area_income"
+)
+
+#*
+
+```
+
+```{r}
+
+# Get the input values.
+input <- advertising[,c('Daily_internet_use','Clicked_ad')]
+
+
+plot(x = advertising$Daily_internet_use, y = advertising$Clicked_ad,
+   xlab = "Daily internet usage",
+   ylab = "Clicked on ad",
+   main = "Daily internet usage vs Clicked on ads"
+)
+
+
+```
+
+#Conclusions
+```{r}
+
+#*Major age group from the data is between 30-35 years.
+#*
+#*#*There were no outliers found in the age, Daily_internet_use, Daily time spent variables. Although we noticed a few outliers in the area income column. They were not dropped as they were significant to the analysis. The assumption would be, there are people who earn less than 20000.
+#*
+#* From the analysis, we get that the number of times the ad is clicked is at 50% and those not clicked is also 50%.
+#* 
+#* The analysis shows the age group likely to click on the ad is between 20-50. Over 50 have not showed any likelihood of clicking on the ads.
+#* 
+#* Also from the analysis, it indicates the people likely to click on the ads have incomes of around 60000- 70000. Those who are in the range of 20000 are less likely to click on the ads.
+#* 
+#* Those who spend less time on the site tend to click on the ads often while those who are there for longer hours are less likely to click on them.
+#* 
+#* From the analysis, those who spend between 200-250 on daily internet have the high incomes of around 60000 -80000.
+#* 
+#* Lastly, the people who spend less on daily internet; that is in the range of 100-150, have a high likelihood of clicking on the course ads.
+
+```
+
+#Recommendations
+```{r}
+
+#*The entrepreneur should focus on the low income earners and find ways to get them to click on the ads.
+#*
+#*Also take into consideration customizing the site so as to ensure everyone who's online will want to click on it.
+#*
+#*Try offering loyalty programs to everyone who clicks on the site,ie, discounts. This will even encourage the low income earners to stick around.
+#*
+#*
+
+
+
+
+```
