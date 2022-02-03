@@ -9,11 +9,17 @@ A Kenyan entrepreneur has created an online cryptography course and would want t
 
 # Experimental Design
 Load the dataset.
+
 Preview dataset.
+
 Check for missing values, duplicates and handle outliers.
+
 Perform EDA
+
  +Univariate Analysis
+ 
  +Bivariate Analysis.
+ 
 Conclusions and Recommendations.
  
 
